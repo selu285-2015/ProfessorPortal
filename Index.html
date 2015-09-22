@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="professorPortal">
+<head>
+    <title>Teach Men</title>
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+
+    <script src="Scripts/Angular/angular-1.4.5/angular.js"></script>
+    <script src="Scripts/Angular/angular-1.4.5/angular-ui-router.js"></script>
+    <script src="app.js"></script>
+    <script src="Scripts/Custom/Controller.js"></script>
+
+    <!--Paoerpoint point scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+<script src="Model/Slideshow.js"></script>
+<!--<script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.0.0/annyang.min.js"></script>
+<script src="../../Scripts/Custom/Paoerpoint.js"></script>-->
+<script src="Scripts/js/audioRecorder.js"></script>
+<script src="Scripts/js/callbackManager.js"></script>
+</body>
+
+    <base href="/">
+</head>
+<body>
+
+<header>
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">Angular Routing Example</a>
+            </div>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="professorportal/#/"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="professorportal/#/PaoerPoint"><i class="fa fa-shield"></i> Pao</a></li>
+                <li><a href="professorportal/#/Mcdowell"><i class="fa fa-comment"></i> McDowell</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<div id="main">
+    <div ui-view></div>
+</div>
+</body>
+</html>
