@@ -1,0 +1,264 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 10;
+    padding-bottom: 60px;
+}
+
+.container {
+    display: table;
+    min-height: 100%;
+    position: relative;
+}
+
+.content {
+    display: table-row;
+    height: 100%;
+}
+
+.content-body {
+    display: table-cell;
+    padding: 20px;
+    min-height: 100%;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+}
+
+.button {
+    width: 300px;
+    padding: 25px;
+    border: 2px solid black;
+    margin: 25px;
+    background-color: white
+}
+
+button.bigger {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 5;
+    width: 100%;
+    height: 100%;
+    display: block;
+    padding: 20;
+    border: 0;
+    margin: 0;
+    font-size: 75pt;
+}
+
+.footer {
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+}
+
+small.error {
+    display: none;
+}
+
+.name {
+    color: white;
+}
+
+.clock {
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+    font-size: 240pt;
+    color: black;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.finePrint {
+    font-size: 10px;
+    font-style: italic;
+}
+
+.logo {
+    background-image: url('images/logo.gif');
+    background-repeat: no-repeat;
+    content: "";
+    display: inline-block;
+    ;
+    height: 50px;
+    margin-right: 10px;
+    position: relative;
+    width: 100px;
+    padding-top: 6px;
+    padding-left: 6px;
+}
+
+.tossing {
+    background-color: transparent;
+    animation-name: tossing;
+    -webkit-animation-name: tossing;
+    animation-duration: 2.5s;
+    -webkit-animation-duration: 2.5s;
+    animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+}
+
+@keyframes tossing {
+    0% {
+        transform: rotate(-4deg);
+    }
+    50% {
+        transform: rotate(4deg);
+    }
+    100% {
+        transform: rotate(-4deg);
+    }
+}
+
+@-webkit-keyframes tossing {
+    0% {
+        -webkit-transform: rotate(-4deg);
+    }
+    50% {
+        -webkit-transform: rotate(4deg);
+    }
+    100% {
+        -webkit-transform: rotate(-4deg);
+    }
+}
+
+.makeBigger {
+    animation-name: bigger;
+    -webkit-animation-name: bigger;
+}
+
+@keyframes bigger {
+    0% {}
+    100% {}
+}
+
+.mirror {
+    background-color: transparent;
+    animation-name: mirror;
+    -webkit-animation-name: mirror;
+    animation-duration: 2s;
+    -webkit-animation-duration: 2s;
+    animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+    animation-timing-function: step-end;
+    -webkit-animation-timing-function: step-end;
+}
+
+@keyframes mirror {
+    0% {
+        transform: rotate(-8deg);
+    }
+    50% {
+        transform: rotate(8deg);
+    }
+    100% {
+        transform: rotate(-8deg);
+    }
+}
+
+@-webkit-keyframes mirror {
+    0% {
+        -webkit-transform: rotate(-8deg);
+    }
+    50% {
+        -webkit-transform: rotate(8deg);
+    }
+    100% {
+        -webkit-transform: rotate(-8deg);
+    }
+}
+
+.slightlyBigger{
+    -webkit-transform: scale(1.5);
+    padding-top: 100px;
+        
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.flip {
+     background-color: transparent;
+    -webkit-background-color: transparent;
+    animation-name: flip;
+    -webkit-animation-name: flip;
+    animation-duration: 2s;
+   -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-timing-function: step-end;
+    animation-timing-function: step-end;
+}
+
+@-webkit-keyframes flip {
+     0% {
+        -webkit-transform: scaleX(-1);
+    }
+    50% {
+        -webkit-transform: scaleX(1);
+    }
+    100% {
+        -webkit-transform: scaleX(-1);
+    }
+}
+
+.shuffle {
+     
+    -webkit-background-color: transparent;
+    -webkit-animation-name: shuffle;
+   -webkit-animation-duration: 8s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: steps(8,end);
+}
+
+@-webkit-keyframes shuffle {
+
+    from{
+       -webkit-transform: translate(-50em, 0);
+    }
+    50%{
+       -webkit-transform: translate(-50em, 0);
+    }
+    to{
+       -webkit-transform: translate(-50em, 0);
+    }
+}
+
+.fishMan {
+    animation-name: fishMan;
+    animation-duration: 4s;
+    animation-timing-function: steps(5,end);
+    animation-iteration-count: infinite;
+}
+
+@keyframes fishMan {
+    0%{
+        transform: 
+    }
+    20%{
+    
+    }
+    40{
+    
+    }
+    60%{
+    
+    }
+    80{
+    
+    }
+    100{
+    
+    }
+}

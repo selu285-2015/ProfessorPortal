@@ -16,29 +16,29 @@
 //         // use the HTML5 History API
 //         //$locationProvider.html5Mode(true);
 //         console.log($routeProvider);
-//     }
+//     }1
 // );
 
 professorPortal.config(function($stateProvider, $urlRouterProvider) {
     
 
     $stateProvider
-        .state('poaerpoint', {
-            url:'/PaoerPoint',
-            tamplateUrl: "ProfessorPortal/PaoerPoint.html",
-            controller: 'PaoerPointController'
+        .state('home',{
+            url:'/',
+            templateUrl:"ProfessorPortal/Home.html",
+            controller: 'HomeController'
         })
         .state('mcdowell', {
             url:'/Mcdowell',
-            templateUrl: "ProfessorPortal/PaoerPoint.html",
+            templateUrl: "ProfessorPortal/Partials/_Mcdowell.html",
             controller: 'McdowellController'
         })
-        .state('home',{
-            url:'/',
-            templateUrl:"ProfessorPortal/Index.html",
-            controller: 'HomeController'
+        .state('pao', {
+            url:'/Pao',
+            templateUrl: "ProfessorPortal/PaoerPoint.html",
+            controller: 'PaoerPointController'
         });
-        $urlRouterProvider.otherwise('/home');
+        $urlRouterProvider.otherwise('/');
         // $routeProvider.
         //     when('/PaoerPoint', {
         //         templateUrl: 'Partials/_PaoerPoint.html',
@@ -65,10 +65,42 @@ professorPortal.controller('PaoerPointController', function($scope){
 
 professorPortal.controller('HomeController', function($scope){
     console.log("Home");
+    $.ajax({
+        url: "test.html",
+        context: document.body
+    }).done(function(result) {
+        console.log(result);
+});
+    $scope.message = 'Everyone come and see how good I look!';
 });
 
 professorPortal.controller('McdowellController', function($scope){
     console.log("Mcdowell");
+    startTime();
+
+    function startTime() {
+    var today=new Date();
+    var h=today.getHours();
+    var m=today.getMinutes();
+    var s=today.getSeconds();
+    m = checkTime(m);
+    s = checkTime(s);
+    if(h > 12)
+    {
+        h = h-12;
+    }
+    if(h == 0){
+        h = 12;
+    }
+   
+    document.getElementById('clock').innerHTML = h+":"+m+":"+s;
+    var t = setTimeout(function(){startTime()},500);
+}
+
+function checkTime(i) {
+    if (i<10) {i = "0" + i}  // add zero in front of numbers < 10
+    return i;
+}
 });
 
 
