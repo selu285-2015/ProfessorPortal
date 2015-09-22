@@ -42,10 +42,12 @@ var slide = new Slideshow;
 console.log(slide);
 
 $(document).ready(function () {
-    $('#imageDiv').attr("src", slide.images[slide.frame]);
+    console.log('hit');
+    
 });
 
 function nextSlide() {
+    console.log(slide);
     if (slide.frame === slide.max) {
         slide.frame = 0;
     } else {

@@ -38,7 +38,7 @@ professorPortal.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: "ProfessorPortal/PaoerPoint.html",
             controller: 'PaoerPointController'
         });
-<<<<<<< HEAD
+
         $urlRouterProvider.otherwise('/');
         // $routeProvider.
         //     when('/PaoerPoint', {
@@ -54,9 +54,9 @@ professorPortal.config(function($stateProvider, $urlRouterProvider) {
         // // use the HTML5 History API
         // //$locationProvider.html5Mode(true);
         // console.log($routeProvider);
-=======
+
         $urlRouterProvider.otherwise('/home');
->>>>>>> origin/master
+
     });
 
 function PaoerCtrl($scope) {
@@ -65,6 +65,7 @@ function PaoerCtrl($scope) {
 
 professorPortal.controller('PaoerPointController', function($scope){
     console.log("Made it!");
+    $('#imageDiv').attr("src", slide.images[slide.frame]);
 });
 
 professorPortal.controller('HomeController', function($scope){
@@ -75,7 +76,7 @@ professorPortal.controller('HomeController', function($scope){
     }).done(function(result) {
         console.log(result);
 });
-    $scope.message = 'Everyone come and see how good I look!';
+    $scope.message = 'Something Musical';
 });
 
 professorPortal.controller('McdowellController', function($scope){
