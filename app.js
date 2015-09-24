@@ -54,7 +54,7 @@ professorPortal.config(function($stateProvider, $urlRouterProvider) {
         // // use the HTML5 History API
         // //$locationProvider.html5Mode(true);
         // console.log($routeProvider);
-
+		// Different comment?
         $urlRouterProvider.otherwise('/home');
 
     });
