@@ -1,23 +1,6 @@
 ﻿var professorPortal = angular.module('professorPortal', ['ui.router']);
+var konamiCode = "";
 
-// angular.module('professorPortal', []).config(
-//     function ($routeProvider, $locationProvider) {
-//         $routeProvider.
-//             when('/PaoerPoint', {
-//                 templateUrl: '/_PaoerPoint.html',
-//                 controller  : 'PaoerPointController'
-//             }).
-//             when('/Test', {
-//                 templateUrl: "../Views/Partials/_Temp.html"
-//             }).
-//             otherwise({
-//                 redirect:'/'
-//             });
-//         // use the HTML5 History API
-//         //$locationProvider.html5Mode(true);
-//         console.log($routeProvider);
-//     }1
-// );
 
 professorPortal.config(function($stateProvider, $urlRouterProvider) {
     
@@ -37,27 +20,50 @@ professorPortal.config(function($stateProvider, $urlRouterProvider) {
             url:'/Pao',
             templateUrl: "ProfessorPortal/PaoerPoint.html",
             controller: 'PaoerPointController'
+        })
+        .state('finance',{
+            url:'/Finance',
+            templateUrl: "ProfessorPortal/Partials/_Finance.html",
+            controller: "FinanceController"
         });
 
         $urlRouterProvider.otherwise('/');
-        // $routeProvider.
-        //     when('/PaoerPoint', {
-        //         templateUrl: 'Partials/_PaoerPoint.html',
-        //         controller  : 'PaoerPointController'
-        //     }).
-        //     when('/Test', {
-        //         templateUrl: "../Views/Partials/_Temp.html"
-        //     }).
-        //     otherwise({
-        //         redirect:'/'
-        //     });
-        // // use the HTML5 History API
-        // //$locationProvider.html5Mode(true);
-        // console.log($routeProvider);
-		// This is a new comment!!!!
-        $urlRouterProvider.otherwise('/home');
-
     });
+
+$(document).keydown(function(e){
+ konamiCode = konamiCode.concat(e.keyCode);
+ if(konamiCode.indexOf("38384040373937396566") > -1){
+    console.log("GOOD");
+    konamiCode = "";
+ }
+ else if(konamiCode.length > 500){
+    konamiCode = "";
+ }
+});
+
+var explosion = false;
+$(document).click( function(e) {
+    if(!explosion){
+        explosion = true;
+        $('#explosionImg').css('visibility', 'visible')
+        var theImage = new Image();
+        var newImg = $('#explosionImg');
+        newImg.attr("src", "ProfessorPortal/Content/Images/explosion.gif");
+        theImage.src = newImg.attr("src");
+        var imgWidth = theImage.width;
+        var imgHeight = theImage.height;
+        console.log(imgWidth);
+        console.log(imgHeight);
+        $('#explosionImg').css({position: "absolute",
+                                marginLeft:0, marginTop:0,
+                                top:(e.pageY-(imgHeight/2)), left:(e.pageX-(imgWidth/2))});
+
+        var audio = new Audio('ProfessorPortal/Content/Music/explosion.mp3');
+        audio.play();
+        setTimeout(function(){$('#explosionImg').removeAttr("src");$('#explosionImg').css('visibility', 'hidden');explosion=false;}, 2550);
+    }
+    });
+
 
 function PaoerCtrl($scope) {
     console.log("TEST");
@@ -70,12 +76,12 @@ professorPortal.controller('PaoerPointController', function($scope){
 
 professorPortal.controller('HomeController', function($scope){
     console.log("Home");
-    $.ajax({
-        url: "test.html",
-        context: document.body
-    }).done(function(result) {
-        console.log(result);
-});
+//     $.ajax({
+//         url: "test.html",
+//         context: document.body
+//     }).done(function(result) {
+//         console.log(result);
+// });
     $scope.message = 'Something Musical';
 });
 
@@ -108,4 +114,9 @@ function checkTime(i) {
 }
 });
 
+professorPortal.controller('FinanceController', function($scope){
+  console.log("got to finance");
+  
+  $scope.response = {text: ['hello', 'world']};
 
+})

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" ng-app="professorPortal">
 <head>
     <title>Teach Men</title>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
 
@@ -12,18 +12,16 @@
     <script src="Scripts/Custom/Controller.js"></script>
 
     <!--Paoerpoint point scripts-->
-    <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+    
 <script src="Model/Slideshow.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.0.0/annyang.min.js"></script>
 <script src="Scripts/Custom/Paoerpoint.js"></script>
-<script src="Scripts/js/audioRecorder.js"></script>
-<script src="Scripts/js/callbackManager.js"></script>
 
 <!--Mcdowell-->
-<link rel="stylesheet" href="css/foundation.css" type="text/css">
 <link rel="stylesheet" href="css/normalize.css" type="text/css">
 <link rel="stylesheet" href="css/flipclock.css" type="text/css">
 <link rel="stylesheet" href="css/custom.css" type="text/css">
+
+
 
 </body>
 
@@ -33,7 +31,6 @@
 
 <header>
     <nav class="navbar navbar-default">
-        <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand" href="professorportal/#/">Epic Teach Men</a>
             </div>
@@ -42,12 +39,14 @@
                 <li><a href="professorportal/#/"><i class="fa fa-home"></i> Home</a></li>
                 <li><a href="professorportal/#/Pao"><i class="fa fa-comment"></i> Pao</a></li>
                 <li><a href="professorportal/#/Mcdowell"><i class="fa fa-comment"></i> McDowell</a></li>
+                <li><a href="professorportal/#/Finance"><i class="fa fa-comment"></i> Finance</a></li>
             </ul>
-        </div>
     </nav>
 </header>
 <div id="main">
     <div ui-view></div>
 </div>
+<img id="explosionImg"></img>
+
 </body>
 </html>
