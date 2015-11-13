@@ -28,7 +28,6 @@ professorPortal.config(function($stateProvider, $urlRouterProvider) {
         });
 
         $urlRouterProvider.otherwise('/');
-
     });
 
 $(document).keydown(function(e){
@@ -42,25 +41,28 @@ $(document).keydown(function(e){
  }
 });
 
+var explosion = false;
 $(document).click( function(e) {
-    var theImage = new Image();
-    var newImg = $('#explosionImg');
-newImg.attr("src", "ProfessorPortal/Content/Images/explosion.gif");
-    theImage.src = newImg.attr("src");
+    if(!explosion){
+        explosion = true;
+        $('#explosionImg').css('visibility', 'visible')
+        var theImage = new Image();
+        var newImg = $('#explosionImg');
+        newImg.attr("src", "ProfessorPortal/Content/Images/explosion.gif");
+        theImage.src = newImg.attr("src");
         var imgWidth = theImage.width;
         var imgHeight = theImage.height;
         console.log(imgWidth);
         console.log(imgHeight);
         $('#explosionImg').css({position: "absolute",
-                            marginLeft:0, marginTop:0,
-                            top:(e.pageY-(imgHeight/2)), left:(e.pageX-(imgWidth/2))});
+                                marginLeft:0, marginTop:0,
+                                top:(e.pageY-(imgHeight/2)), left:(e.pageX-(imgWidth/2))});
 
-    
-    
-    
-
-    
-    } );
+        var audio = new Audio('ProfessorPortal/Content/Music/explosion.mp3');
+        audio.play();
+        setTimeout(function(){$('#explosionImg').removeAttr("src");$('#explosionImg').css('visibility', 'hidden');explosion=false;}, 2550);
+    }
+    });
 
 
 function PaoerCtrl($scope) {
