@@ -1,6 +1,12 @@
 ﻿var professorPortal = angular.module('professorPortal', ['ui.router']);
 var konamiCode = "";
+var User = function(){
+    this.name = "";
+    this.state = "";
+    this.test = ["test"];
+}
 
+var userIn = new User();
 
 professorPortal.config(function($stateProvider, $urlRouterProvider) {
     
@@ -9,26 +15,52 @@ professorPortal.config(function($stateProvider, $urlRouterProvider) {
         .state('home',{
             url:'/',
             templateUrl:"ProfessorPortal/Home.html",
-            controller: 'HomeController'
+            controller: 'HomeController',
+            authenticate: false
+          })
+        .state("login", {
+            url: "/login",
+            templateUrl: "ProfessorPortal/Partials/_loginModalTemplate.html",
+            controller: "LoginController",
+            authenticate: false
         })
         .state('mcdowell', {
             url:'/Mcdowell',
             templateUrl: "ProfessorPortal/Partials/_Mcdowell.html",
-            controller: 'McdowellController'
+            controller: 'McdowellController',
+            authenticate: true
         })
         .state('pao', {
             url:'/Pao',
             templateUrl: "ProfessorPortal/PaoerPoint.html",
-            controller: 'PaoerPointController'
+            controller: 'PaoerPointController',
+            authenticate: true
         })
         .state('finance',{
             url:'/Finance',
             templateUrl: "ProfessorPortal/Partials/_Finance.html",
-            controller: "FinanceController"
+            controller: "FinanceController",
+            authenticate: true
         });
 
         $urlRouterProvider.otherwise('/');
     });
+
+
+
+professorPortal.run(function ($rootScope, $state) {
+
+  $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
+    $state.isAdmin = $state != userIn.state;
+    if (toState.authenticate && userIn.name == ""){
+      // User isn’t authenticated
+      $state.transitionTo("login");
+      event.preventDefault(); 
+    }
+  });
+
+});
+
 
 $(document).keydown(function(e){
  konamiCode = konamiCode.concat(e.keyCode);
@@ -57,7 +89,7 @@ $(document).click( function(e) {
         $('#explosionImg').css({position: "absolute",
                                 marginLeft:0, marginTop:0,
                                 top:(e.pageY-(imgHeight/2)), left:(e.pageX-(imgWidth/2))});
-
+        $('#explosionImg').css( 'pointer-events', 'none' );
         var audio = new Audio('ProfessorPortal/Content/Music/explosion.mp3');
         audio.play();
         setTimeout(function(){$('#explosionImg').removeAttr("src");$('#explosionImg').css('visibility', 'hidden');explosion=false;}, 2550);
@@ -69,12 +101,14 @@ function PaoerCtrl($scope) {
     console.log("TEST");
     }
 
-professorPortal.controller('PaoerPointController', function($scope){
+professorPortal.controller('PaoerPointController', function($scope, $state){
+    $scope.isAdmin = $state == userIn.state;
     console.log("Made it!");
     $('#imageDiv').attr("src", slide.images[slide.frame]);
 });
 
-professorPortal.controller('HomeController', function($scope){
+professorPortal.controller('HomeController', function($scope, $state){
+    $scope.isAdmin = $state == userIn.state;
     console.log("Home");
 //     $.ajax({
 //         url: "test.html",
@@ -85,7 +119,8 @@ professorPortal.controller('HomeController', function($scope){
     $scope.message = 'Something Musical';
 });
 
-professorPortal.controller('McdowellController', function($scope){
+professorPortal.controller('McdowellController', function($scope, $state){
+    $scope.isAdmin = $state == userIn.state;
     console.log("Mcdowell");
     startTime();
 
@@ -114,9 +149,16 @@ function checkTime(i) {
 }
 });
 
-professorPortal.controller('FinanceController', function($scope){
+professorPortal.controller('FinanceController', function($scope, $state){
+  $scope.isAdmin = $state == userIn.state;
   console.log("got to finance");
   
   $scope.response = {text: ['hello', 'world']};
 
-})
+});
+
+
+professorPortal.controller('LoginController', function($scope, $state){
+  $scope.isAdmin = $state == userIn.state;
+  console.log("got to Login");
+});
