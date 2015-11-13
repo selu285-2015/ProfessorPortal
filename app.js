@@ -26,15 +26,15 @@ professorPortal.config(function($stateProvider, $urlRouterProvider) {
         })
         .state('mcdowell', {
             url:'/Mcdowell',
-            templateUrl: "ProfessorPortal/Partials/_Mcdowell.html",
+            templateUrl: "ProfessorPortal/Partials/_ProfilePage.html",
             controller: 'McdowellController',
             authenticate: true
         })
         .state('pao', {
             url:'/Pao',
-            templateUrl: "ProfessorPortal/PaoerPoint.html",
-            controller: 'PaoerPointController',
-            authenticate: true
+            authenticate: false,
+            templateUrl: "ProfessorPortal/Partials/_ProfilePage.html",
+            controller: 'McdowellController'
         })
         .state('finance',{
             url:'/Finance',

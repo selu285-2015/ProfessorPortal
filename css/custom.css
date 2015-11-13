@@ -188,18 +188,6 @@ small.error {
     margin-right: auto;
 }
 
-.flip {
-     background-color: transparent;
-    -webkit-background-color: transparent;
-    animation-name: flip;
-    -webkit-animation-name: flip;
-    animation-duration: 2s;
-   -webkit-animation-duration: 2s;
-    -webkit-animation-iteration-count: infinite;
-    animation-iteration-count: infinite;
-    -webkit-animation-timing-function: step-end;
-    animation-timing-function: step-end;
-}
 
 @-webkit-keyframes flip {
      0% {
@@ -261,4 +249,148 @@ small.error {
     100{
     
     }
+}
+/*Profile Image*/
+.profile-header img.profile-cover-photo {
+    z-index: 0;
+    width: 100%;
+    height: 300px;
+    margin-bottom: 10px;
+}
+
+.profile-profile-pic {
+    margin: -150px 10px 0px 20px;
+    z-index: 9;
+    width: 20%;
+}
+
+.navbar-image {
+    width: 45px;
+    height: 45px;
+    margin-right: 10px;
+}
+
+
+/*Tiles And Progress Bars*/
+.tile-progress {
+    background-color: #303641;
+    color: #fff;
+}
+
+.tile-progress {
+    background: #00a65b;
+    color: #fff;
+    margin-bottom: 20px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding;
+    background-clip: padding-box;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+    .tile-progress .tile-header {
+        padding: 15px 20px;
+        padding-bottom: 40px;
+    }
+
+    .tile-progress .tile-footer {
+        padding: 20px;
+        text-align: right;
+        background: rgba(0,0,0,0.1);
+        -webkit-border-radius: 0 0 3px 3px;
+        -webkit-background-clip: padding-box;
+        -moz-border-radius: 0 0 3px 3px;
+        -moz-background-clip: padding;
+        border-radius: 0 0 3px 3px;
+        background-clip: padding-box;
+        -webkit-border-radius: 0 0 3px 3px;
+        -moz-border-radius: 0 0 3px 3px;
+        border-radius: 0 0 3px 3px;
+    }
+
+    .tile-progress.tile-red {
+        background-color: #f56954;
+        color: #fff;
+    }
+
+.tile-progress {
+    background-color: #303641;
+    color: #fff;
+}
+
+    .tile-progress.tile-blue {
+        background-color: #0073b7;
+        color: #fff;
+    }
+
+    .tile-progress.tile-aqua {
+        background-color: #00c0ef;
+        color: #fff;
+    }
+
+    .tile-progress.tile-green {
+        background-color: #00a65a;
+        color: #fff;
+    }
+
+    .tile-progress.tile-cyan {
+        background-color: #00b29e;
+        color: #fff;
+    }
+
+    .tile-progress.tile-purple {
+        background-color: #ba79cb;
+        color: #fff;
+    }
+
+    .tile-progress.tile-pink {
+        background-color: #ec3b83;
+        color: #fff;
+    }
+
+
+/*Rotations*/
+/* entire container, keeps perspective */
+.flip-container {
+    perspective: 1000;
+}
+    /* flip the pane when hovered */
+    .flip-container:active .flipper, .flip-container.hover .flipper, .flip-container.flip .flipper {
+        transform: rotateY(180deg);
+    }
+
+.flip-container, .front, .back {
+    width: 100%;
+    height: 300px;
+}
+
+/* flip speed goes here */
+.flipper {
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* front pane, placed above back */
+.front {
+    z-index: 2;
+    /* for firefox 31 */
+    transform: rotateY(0deg);
+}
+
+/* back, initially hidden pane */
+.back {
+    transform: rotateY(180deg);
 }
