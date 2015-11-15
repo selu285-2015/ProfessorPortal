@@ -2,8 +2,6 @@
 var konamiCode = "";
 var User = function(){
     this.name = "";
-    this.state = "";
-    this.test = ["test"];
 }
 
 var userIn = new User();
@@ -51,7 +49,7 @@ professorPortal.config(function($stateProvider, $urlRouterProvider) {
 professorPortal.run(function ($rootScope, $state) {
 
   $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
-    $state.isAdmin = $state != userIn.state;
+    $state.isAdmin = $state != userIn.name;
     if (toState.authenticate && userIn.name == ""){
       // User isn’t authenticated
       $state.transitionTo("login");
@@ -102,13 +100,13 @@ function PaoerCtrl($scope) {
     }
 
 professorPortal.controller('PaoerPointController', function($scope, $state){
-    $scope.isAdmin = $state == userIn.state;
+    //$scope.isAdmin = $state == userIn.name;
     console.log("Made it!");
     $('#imageDiv').attr("src", slide.images[slide.frame]);
 });
 
 professorPortal.controller('HomeController', function($scope, $state){
-    $scope.isAdmin = $state == userIn.state;
+    //$scope.isAdmin = $state == userIn.name;
     console.log("Home");
 //     $.ajax({
 //         url: "test.html",
@@ -120,7 +118,7 @@ professorPortal.controller('HomeController', function($scope, $state){
 });
 
 professorPortal.controller('McdowellController', function($scope, $state){
-    $scope.isAdmin = $state == userIn.state;
+    //$scope.isAdmin = $state == userIn.name;
     console.log("Mcdowell");
     startTime();
 
@@ -150,7 +148,7 @@ function checkTime(i) {
 });
 
 professorPortal.controller('FinanceController', function($scope, $state){
-  $scope.isAdmin = $state == userIn.state;
+  //$scope.isAdmin = $state == userIn.name;
   console.log("got to finance");
   
   $scope.response = {text: ['hello', 'world']};
@@ -159,6 +157,6 @@ professorPortal.controller('FinanceController', function($scope, $state){
 
 
 professorPortal.controller('LoginController', function($scope, $state){
-  $scope.isAdmin = $state == userIn.state;
+  //$scope.isAdmin = $state == userIn.name;
   console.log("got to Login");
 });
