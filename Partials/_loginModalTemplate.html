@@ -1,6 +1,30 @@
-<div>
-    <input type="email" ng-model="_email" />
-    <input type="password" ng-model="_password" />
-    <button>Submit</button>
-  <button>Cancel</button>
-</div>
+<form id="login">
+	<div>
+	    <input id="user" ng-model="_user" name="user"/>
+	    <input id="password" type="password" ng-model="_password" name="password"/>
+	    <button onclick="login();">Submit</button>
+	  <button>Cancel</button>
+	</div>
+</form>
+<script>
+function login(){
+	var form = $('#login');
+	var serializedData = form.serialize();
+	request = $.ajax({
+				url: "ProfessorPortal/PHP/login.php",
+				type: "post",
+				data: serializedData
+			});
+			request.done(function (response, textStatus, jqXHR){
+				var temp = $.parseJSON(response)
+				checkLogin(temp);
+			});
+			
+			request.fail(function (jqXHR, textStatus, errorThrown){
+				console.error(
+					"The following error occurred: "+
+					textStatus, errorThrown, jqXHR
+				);
+			});
+}
+</script>

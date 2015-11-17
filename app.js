@@ -6,6 +6,8 @@ var User = function(){
 
 var userIn = new User();
 
+var baseUri = "http://localhost:13238/api";
+
 professorPortal.config(function($stateProvider, $urlRouterProvider) {
     
 
@@ -26,19 +28,13 @@ professorPortal.config(function($stateProvider, $urlRouterProvider) {
             url:'/Mcdowell',
             templateUrl: "ProfessorPortal/Partials/_ProfilePage.html",
             controller: 'McdowellController',
-            authenticate: true
+            authenticate: false
         })
         .state('pao', {
             url:'/Pao',
             authenticate: false,
             templateUrl: "ProfessorPortal/Partials/_ProfilePage.html",
-            controller: 'McdowellController'
-        })
-        .state('finance',{
-            url:'/Finance',
-            templateUrl: "ProfessorPortal/Partials/_Finance.html",
-            controller: "FinanceController",
-            authenticate: true
+            controller: 'PaoController'
         });
 
         $urlRouterProvider.otherwise('/');
@@ -49,7 +45,9 @@ professorPortal.config(function($stateProvider, $urlRouterProvider) {
 professorPortal.run(function ($rootScope, $state) {
 
   $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
-    $state.isAdmin = $state != userIn.name;
+        
+    console.log($state.current.name)
+    console.log(userIn.name)
     if (toState.authenticate && userIn.name == ""){
       // User isn’t authenticated
       $state.transitionTo("login");
@@ -99,10 +97,20 @@ function PaoerCtrl($scope) {
     console.log("TEST");
     }
 
-professorPortal.controller('PaoerPointController', function($scope, $state){
+professorPortal.controller('PaoController', function($scope, $state){
     //$scope.isAdmin = $state == userIn.name;
     console.log("Made it!");
-    $('#imageDiv').attr("src", slide.images[slide.frame]);
+    var myclass = getClasses('Pao')
+    $scope.classes = [];
+    for(var i = 0; i < myclass.length; i++){
+        $scope.classes.push(myclass[i])
+        //console.log(myclass[i])
+    }
+
+    $scope.checkAdmin = function(){
+        return $state.isAdmin = $state.current.name.toLowerCase() === userIn.name.toLowerCase();
+    }
+
 });
 
 professorPortal.controller('HomeController', function($scope, $state){
@@ -120,31 +128,15 @@ professorPortal.controller('HomeController', function($scope, $state){
 professorPortal.controller('McdowellController', function($scope, $state){
     //$scope.isAdmin = $state == userIn.name;
     console.log("Mcdowell");
-    startTime();
-
-    function startTime() {
-    var today=new Date();
-    var h=today.getHours();
-    var m=today.getMinutes();
-    var s=today.getSeconds();
-    m = checkTime(m);
-    s = checkTime(s);
-    if(h > 12)
-    {
-        h = h-12;
+    var myclass = getClasses('mcdowell')
+    $scope.classes = [];
+    for(var i = 0; i < myclass.length; i++){
+        $scope.classes.push(myclass[i])
+        //console.log(myclass[i])
     }
-    if(h == 0){
-        h = 12;
+    $scope.checkAdmin = function(){
+        return $state.isAdmin = $state.current.name.toLowerCase() === userIn.name.toLowerCase();
     }
-   
-    document.getElementById('clock').innerHTML = h+":"+m+":"+s;
-    var t = setTimeout(function(){startTime()},500);
-}
-
-function checkTime(i) {
-    if (i<10) {i = "0" + i}  // add zero in front of numbers < 10
-    return i;
-}
 });
 
 professorPortal.controller('FinanceController', function($scope, $state){
@@ -160,3 +152,33 @@ professorPortal.controller('LoginController', function($scope, $state){
   //$scope.isAdmin = $state == userIn.name;
   console.log("got to Login");
 });
+
+function checkLogin(user){
+    console.log(user)
+    userIn.name = user.UserName;
+    console.log("logged in")
+    console.log(userIn)
+}
+
+
+function getClasses(profName){
+    var ret;
+    request = $.ajax({
+                url: "ProfessorPortal/PHP/getClasses.php",
+                type: "get",
+                data: {'name':profName},
+                async:false
+            });
+            request.done(function (response, textStatus, jqXHR){
+                ret = $.parseJSON(response)
+                //console.log(response)
+            });
+            
+            request.fail(function (jqXHR, textStatus, errorThrown){
+                console.error(
+                    "The following error occurred: "+
+                    textStatus, errorThrown, jqXHR
+                );
+            });
+    return ret;
+}

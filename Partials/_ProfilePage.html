@@ -1,27 +1,30 @@
 <div class="container">
     <div class="profile-header">
-        <img align="left" class="profile-cover-photo" src="http://lorempixel.com/850/280/nightlife/5/" alt="Profile image example"/>
-        <img align="left" class="profile-profile-pic" src="http://lorempixel.com/180/180/people/9/" alt="Profile image example"/>
+        <img align="left" class="profile-cover-photo" src="{{classes[0].CoverPhoto}}" alt="Profile image example"/>
+        <img align="left" class="profile-profile-pic" src="{{classes[0].Picture}}" alt="Profile image example"/>
         <div class="profile-description">
-            <h1> {{Name}} </h1>
+            <h1> {{classes[0].UserName}} </h1>
             <p> {{Description}}
         </div>
+        <audio controls autoplay loop hidden>
+          <source src="{{classes[0].ThemeSong}}" type="audio/mpeg">
+        Your browser does not support the audio element.
+        </audio>
     </div>
 </div>
 <h3>Popular Classes</h3>
-<div class="col-sm-3">
-    <div class="flip-container" id="cmps-401" onclick="flip(id);">
+<div class="col-sm-3" ng-repeat="class in classes">
+    <div class="flip-container" id="c-{{class.ID}}" onclick="flip(id);">
         <div class="flipper">
             <div class="front">
                 <!-- front content -->
                 <div class="tile-progress tile-red">
                     <div class="tile-header">
-                        <h3>{{Class Name}}</h3>
-                        <span>{{Class Description}}</span>
+                        <h3>{{class.Name}}</h3>
+                        <span>{{class.Description}}</span>
                     </div>
                     <div class="tile-footer">
-                        <h4>{{Currently Enrolled}}</h4>
-                        <span>Put link to class here!</span>
+                        <h4>Students:{{class.EnrolledStudents}}</h4>
                     </div>
                 </div>
                 <!-- end of front content-->
@@ -30,405 +33,89 @@
                 <!-- back content -->
                 <div class="tile-progress tile-green">
                     <div class="tile-header">
-                        <div align="right">{{Class Name}}</div>
+                        <div align="right">{{class.Name}}</div>
                         <ul>
-                            <li>
-                                {{File goes here}}
+                            <li ng-repeat="file in class.files">
+                                {{file.Description}}
                             </li>
-                            <li>
-                                {{File goes here}}
-                            </li>
-                            <li>
-                                {{File goes here}}
-                            </li>
-                            <li>
-                                {{File goes here}}
-                            </li>                    
-                            <li>
-                                {{File goes here}}
-                            </li>
-                            <li>
-                                {{File goes here}}
-                            </li>
-                            <li>
-                                {{File goes here}}
-                            </li>
+                            
                         </ul>
                     </div>
                     <div class="tile-footer">
                         <!-- Back Footer-->
-                        <input type="file"/>
+                        <!--<form id="fileUp" ng-show="checkAdmin()">-->
+                        <form id="fileUp" action="" method="post" enctype="multipart/form-data">
+                            <input type="file" id="file" name="file"/>
+                            <input type="button" value="Upload" id="fileUp"/>
+                            <hidden name="id" id="profid" value="{{class.TeacherID}}" />
+                            
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div class="col-sm-3">
-    <div class="flip-container" id="cmps-375" onclick="flip(id);">
-        <div class="flipper">
-            <div class="front">
-                <!-- front content -->
-                <div class="tile-progress tile-red">
-                    <div class="tile-header">
-                        <h3>{{Class Name}}</h3>
-                        <span>{{Class Description}}</span>
-                    </div>
-                    <div class="tile-footer">
-                        <h4>{{Currently Enrolled}}</h4>
-                        <span>Put link to class here!</span>
-                    </div>
-                </div>
-                <!-- end of front content-->
-            </div>
-            <div class="back">
-                <!-- back content -->
-                <div class="tile-progress tile-green">
-                    <div class="tile-header">
-                        <div align="right">{{Class Name}}</div>
-                        <ul>
-                            <li>
-                                {{File goes here}}
-                            </li>
-                            <li>
-                                {{File goes here}}
-                            </li>
-                            <li>
-                                {{File goes here}}
-                            </li>
-                            <li>
-                                {{File goes here}}
-                            </li>                    
-                            <li>
-                                {{File goes here}}
-                            </li>
-                            <li>
-                                {{File goes here}}
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="tile-footer">
-                        <!-- Back Footer-->
-                        <input type="file"/>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="col-sm-3">
-    <div class="flip-container" id="cmps-161" onclick="flip(id);">
-        <div class="flipper">
-            <div class="front">
-                <!-- front content -->
-                <div class="tile-progress tile-red">
-                    <div class="tile-header">
-                        <h3>{{Class Name}}</h3>
-                        <span>{{Class Description}}</span>
-                    </div>
-                    <div class="tile-footer">
-                        <h4>{{Currently Enrolled}}</h4>
-                        <span>Put link to class here!</span>
-                    </div>
-                </div>
-                <!-- end of front content-->
-            </div>
-            <div class="back">
-                <!-- back content -->
-                <div class="tile-progress tile-green">
-                    <div class="tile-header">
-                        <div align="right">{{Class Name}}</div>
-                        <ul>
-                            <li>
-                                {{File goes here}}
-                            </li>
-                            <li>
-                                {{File goes here}}
-                            </li>
-                            <li>
-                                {{File goes here}}
-                            </li>
-                            <li>
-                                {{File goes here}}
-                            </li>                    
-                            <li>
-                                {{File goes here}}
-                            </li>
-                            <li>
-                                {{File goes here}}
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="tile-footer">
-                        <!-- Back Footer-->
-                        <input type="file"/>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="col-sm-3">
-    <div class="flip-container" id="cmps-400" onclick="flip(id);">
-        <div class="flipper">
-            <div class="front">
-                <!-- front content -->
-                <div class="tile-progress tile-red">
-                    <div class="tile-header">
-                        <h3>{{Class Name}}</h3>
-                        <span>{{Class Description}}</span>
-                    </div>
-                    <div class="tile-footer">
-                        <h4>{{Currently Enrolled}}</h4>
-                        <span>Put link to class here!</span>
-                    </div>
-                </div>
-                <!-- end of front content-->
-            </div>
-            <div class="back">
-                <!-- back content -->
-                <div class="tile-progress tile-green">
-                    <div class="tile-header">
-                        <div align="right">{{Class Name}}</div>
-                        <ul>
-                            <li>
-                                {{File goes here}}
-                            </li>
-                            <li>
-                                {{File goes here}}
-                            </li>
-                            <li>
-                                {{File goes here}}
-                            </li>
-                            <li>
-                                {{File goes here}}
-                            </li>                    
-                            <li>
-                                {{File goes here}}
-                            </li>
-                            <li>
-                                {{File goes here}}
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="tile-footer">
-                        <!-- Back Footer-->
-                        <input type="file"/>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="col-sm-3">
-    <div class="flip-container" id="cmps-280" onclick="flip(id);">
-        <div class="flipper">
-            <div class="front">
-                <!-- front content -->
-                <div class="tile-progress tile-red">
-                    <div class="tile-header">
-                        <h3>{{Class Name}}</h3>
-                        <span>{{Class Description}}</span>
-                    </div>
-                    <div class="tile-footer">
-                        <h4>{{Currently Enrolled}}</h4>
-                        <span>Put link to class here!</span>
-                    </div>
-                </div>
-                <!-- end of front content-->
-            </div>
-            <div class="back">
-                <!-- back content -->
-                <div class="tile-progress tile-green">
-                    <div class="tile-header">
-                        <div align="right">{{Class Name}}</div>
-                        <ul>
-                            <li>
-                                {{File goes here}}
-                            </li>
-                            <li>
-                                {{File goes here}}
-                            </li>
-                            <li>
-                                {{File goes here}}
-                            </li>
-                            <li>
-                                {{File goes here}}
-                            </li>                    
-                            <li>
-                                {{File goes here}}
-                            </li>
-                            <li>
-                                {{File goes here}}
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="tile-footer">
-                        <!-- Back Footer-->
-                        <input type="file"/>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="col-sm-3">
-    <div class="flip-container" id="cmps-285" onclick="flip(id);">
-        <div class="flipper">
-            <div class="front">
-                <!-- front content -->
-                <div class="tile-progress tile-red">
-                    <div class="tile-header">
-                        <h3>{{Class Name}}</h3>
-                        <span>{{Class Description}}</span>
-                    </div>
-                    <div class="tile-footer">
-                        <h4>{{Currently Enrolled}}</h4>
-                        <span>Put link to class here!</span>
-                    </div>
-                </div>
-                <!-- end of front content-->
-            </div>
-            <div class="back">
-                <!-- back content -->
-                <div class="tile-progress tile-green">
-                    <div class="tile-header">
-                        <div align="right">{{Class Name}}</div>
-                        <ul>
-                            <li>
-                                {{File goes here}}
-                            </li>
-                            <li>
-                                {{File goes here}}
-                            </li>
-                            <li>
-                                {{File goes here}}
-                            </li>
-                            <li>
-                                {{File goes here}}
-                            </li>                    
-                            <li>
-                                {{File goes here}}
-                            </li>
-                            <li>
-                                {{File goes here}}
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="tile-footer">
-                        <!-- Back Footer-->
-                        <input type="file"/>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="col-sm-3">
-    <div class="flip-container" id="cmps-257" onclick="flip(id);">
-        <div class="flipper">
-            <div class="front">
-                <!-- front content -->
-                <div class="tile-progress tile-red">
-                    <div class="tile-header">
-                        <h3>{{Class Name}}</h3>
-                        <span>{{Class Description}}</span>
-                    </div>
-                    <div class="tile-footer">
-                        <h4>{{Currently Enrolled}}</h4>
-                        <span>Put link to class here!</span>
-                    </div>
-                </div>
-                <!-- end of front content-->
-            </div>
-            <div class="back">
-                <!-- back content -->
-                <div class="tile-progress tile-green">
-                    <div class="tile-header">
-                        <div align="right">{{Class Name}}</div>
-                        <ul>
-                            <li>
-                                {{File goes here}}
-                            </li>
-                            <li>
-                                {{File goes here}}
-                            </li>
-                            <li>
-                                {{File goes here}}
-                            </li>
-                            <li>
-                                {{File goes here}}
-                            </li>                    
-                            <li>
-                                {{File goes here}}
-                            </li>
-                            <li>
-                                {{File goes here}}
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="tile-footer">
-                        <!-- Back Footer-->
-                        <input type="file"/>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="col-sm-3">
-    <div class="flip-container" id="cmps-411" onclick="flip(id);">
-        <div class="flipper">
-            <div class="front">
-                <!-- front content -->
-                <div class="tile-progress tile-red">
-                    <div class="tile-header">
-                        <h3>{{Class Name}}</h3>
-                        <span>{{Class Description}}</span>
-                    </div>
-                    <div class="tile-footer">
-                        <h4>{{Currently Enrolled}}</h4>
-                        <span>Put link to class here!</span>
-                    </div>
-                </div>
-                <!-- end of front content-->
-            </div>
-            <div class="back">
-                <!-- back content -->
-                <div class="tile-progress tile-green">
-                    <div class="tile-header">
-                        <div align="right">{{Class Name}}</div>
-                        <ul>
-                            <li>
-                                {{File goes here}}
-                            </li>
-                            <li>
-                                {{File goes here}}
-                            </li>
-                            <li>
-                                {{File goes here}}
-                            </li>
-                            <li>
-                                {{File goes here}}
-                            </li>                    
-                            <li>
-                                {{File goes here}}
-                            </li>
-                            <li>
-                                {{File goes here}}
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="tile-footer">
-                        <!-- Back Footer-->
-                        <input type="file"/>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 <script>
     function flip(id) {
         document.querySelector("#" + id).classList.toggle("flip");
     }
 </script>
+
+<script>
+                           
+                            $('#fileUp').click(function(){
+                                if( window.FormData !== undefined ) 
+         //make sure that we can use FormData ie>9, chrome > 7, opera > 12 safari >5, android > 3  gecko mobile > 2, opera mobile >12 <- wil support XHR too
+                                {
+                                    var formData = new FormData($('form')[0]);
+                                    console.log(document.getElementById('profid').value);
+                                    formData.append("id", $("#profid").value);
+                                    console.log(formData)
+                                    $.ajax({
+                                        url: 'ProfessorPortal/PHP/fileUp.php',  //Server script to process data
+                                        type: 'POST',
+                                        xhr: function() {  // Custom XMLHttpRequest
+                                            var myXhr = $.ajaxSettings.xhr();
+                                            if(myXhr.upload){ // Check if upload property exists
+                                                //myXhr.upload.addEventListener('progress',progressHandlingFunction, false); // For handling the progress of the upload
+                                            }
+                                            return myXhr;
+                                        },
+                                        //Ajax events
+                                        //beforeSend: beforeSendHandler,
+                                        success: function(response){
+                                            console.log(response)
+                                        },
+                                        error: function(){
+                                            console.log("error")
+                                        },
+                                        // Form data
+                                        data: formData,
+                                        //Options to tell jQuery not to process data or worry about content-type.
+                                        cache: false,
+                                        contentType: false,
+                                        processData: false
+                                    });
+                                }
+                            else{
+                                console.log("awwwww")
+                            }
+                            });
+
+                            $(':file').change(function(){
+                                var file = this.files[0];
+                                var name = file.name;
+                                var size = file.size;
+                                var type = file.type;
+                                //Your validation
+                                console.log("change file");
+                            });
+
+                        </script>
+<style>
+.profile-profile-pic{
+    width:200px;
+    height:200px;
+}
+</style>
